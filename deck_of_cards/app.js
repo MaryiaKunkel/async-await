@@ -13,10 +13,13 @@ deck.drawCard()
 
 async function getTwoCards() {
   const deckId = await deck.drawCard();
-  let res1 = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
-  let res2 = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+  let res = await Promise.all([
+    axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`),
+    axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+  ])
 }
 getTwoCards()
+
 
 
 let newDeckUrl = "https://deckofcardsapi.com/api/deck/new/";
